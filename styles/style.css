@@ -1,0 +1,87 @@
+.title {
+  font-family: "Poppins", sans-serif;
+  text-align: center;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  padding: 0 50px;
+}
+
+.keyboard-container {
+  display: flex;
+  gap: 10px;
+  margin: 30px auto;
+  flex-direction: column;
+  min-width: 500px;
+  max-width: 885px;
+}
+
+.keys-row {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 5px;
+  list-style: none;
+}
+
+#textarea {
+  resize: none;
+  font-size: 15px;
+  line-height: 16px;
+  padding: 10px;
+  font-family: "Poppins", sans-serif;
+}
+
+.key {
+  font-family: "Poppins", sans-serif;
+  position: relative;
+  line-height: 18px;
+  display: flex;
+  justify-content: space-around;
+  cursor: pointer;
+  flex-grow: 1;
+  text-align: center;
+  box-sizing: border-box;
+  border: 2px solid #adadad;
+  border-radius: 5px;
+  padding: 15px 20px;
+  max-width: 52px;
+  background: rgb(255, 255, 255);
+  background: linear-gradient(0deg, rgb(255, 255, 255) 0%, rgb(186, 186, 186) 5%, rgb(255, 255, 255) 10%, rgb(255, 255, 255) 100%);
+}
+.key.active {
+  background-color: #ad6eff;
+  background: linear-gradient(0deg, rgb(169, 137, 210) 0%, rgb(169, 137, 210) 23%, rgb(169, 137, 210) 100%);
+  border: 2px solid rgb(169, 137, 210);
+}
+.key:hover {
+  background-color: #ad6eff;
+  background: linear-gradient(0deg, rgb(173, 110, 255) 0%, rgb(173, 110, 255) 23%, rgb(173, 110, 255) 100%);
+  border: 2px solid #ad6eff;
+}
+.key_special {
+  background-color: #7e7e7e;
+  background: linear-gradient(0deg, rgb(158, 158, 158) 0%, rgb(126, 126, 126) 5%, rgb(158, 158, 158) 10%, rgb(158, 158, 158) 100%);
+  color: #000;
+  font-weight: bold;
+  max-width: none;
+}
+.key_space {
+  max-width: none;
+  flex-grow: 1000;
+}
+.key_fixed {
+  flex-grow: 1;
+  max-width: 52px;
+}
+
+.alt-key {
+  position: absolute;
+  top: 2px;
+  left: 10px;
+  font-size: 12px;
+}
+
+/*# sourceMappingURL=style.css.map */
