@@ -70,110 +70,110 @@ export default function initLayout() {
   //     this.altRuKey = altRuKey;
   //     this.classList = [...classList];
   //   }
-}
-
-function createKey(rowEl, enKey, ruKey, code, [...classList] = 'key', altEnKey = null, altRuKey = null) {
-  const KEY_ELEMENT = document.createElement('li');
-  rowEl.appendChild(KEY_ELEMENT);
-
-  KEY_ELEMENT.classList.add(...classList);
-  KEY_ELEMENT.appendChild(document.createTextNode(isLangEn === 'true' ? enKey : ruKey));
-
-  KEY_ELEMENT.setAttribute('en-key', enKey);
-  KEY_ELEMENT.setAttribute('ru-key', ruKey);
-  KEY_ELEMENT.setAttribute('code', code);
-  KEY_ELEMENT.setAttribute('alt-en-key', altEnKey);
-  KEY_ELEMENT.setAttribute('alt-ru-key', altRuKey);
-
-  // if (altEnKey) {
-  //   const ALT_KEY = document.createElement('span');
-  //   ALT_KEY.classList.add('alt-key');
-  //   ALT_KEY.innerHTML = altEnKey;
-  //   KEY_ELEMENT.setAttribute('alt-en-key', altEnKey);
-  //   if (KEY_ELEMENT.classList.contains('subkey')) KEY_ELEMENT.appendChild(ALT_KEY);
-  // } else {
-  //   KEY_ELEMENT.setAttribute('alt-en-key', enKey.toUpperCase());
   // }
 
-  // if (altRuKey) {
-  //   KEY_ELEMENT.setAttribute('alt-ru-key', altRuKey);
-  // } else {
-  //   KEY_ELEMENT.setAttribute('alt-ru-key', ruKey.toUpperCase());
-  // }
+  function createKey(rowEl, enKey, ruKey, code, [...classList] = 'key', altEnKey = null, altRuKey = null) {
+    const KEY_ELEMENT = document.createElement('li');
+    rowEl.appendChild(KEY_ELEMENT);
 
-  return KEY_ELEMENT;
-}
+    KEY_ELEMENT.classList.add(...classList);
+    KEY_ELEMENT.appendChild(document.createTextNode(isLangEn === 'true' ? enKey : ruKey));
 
-const FIRST_KEYS_ROW = document.querySelector('#keys-row_1');
-const SECOND_KEYS_ROW = document.querySelector('#keys-row_2');
-const THIRD_KEYS_ROW = document.querySelector('#keys-row_3');
-const FOURTH_KEYS_ROW = document.querySelector('#keys-row_4');
-const FITHS_KEYS_ROW = document.querySelector('#keys-row_5');
+    KEY_ELEMENT.setAttribute('en-key', enKey);
+    KEY_ELEMENT.setAttribute('ru-key', ruKey);
+    KEY_ELEMENT.setAttribute('code', code);
+    KEY_ELEMENT.setAttribute('alt-en-key', altEnKey);
+    KEY_ELEMENT.setAttribute('alt-ru-key', altRuKey);
 
-for (let i = 0; i < ROW_1.length; i += 1) {
-  let test = new Key(
-    FIRST_KEYS_ROW,
-    ROW_1[i].en,
-    ROW_1[i].ru,
-    ROW_1[i].code,
-    ROW_1[i].altEn,
-    ROW_1[i].altRu,
-    ROW_1[i].classList,
-  );
-  console.log(test);
-  createKey(
-    FIRST_KEYS_ROW,
-    ROW_1[i].en,
-    ROW_1[i].ru,
-    ROW_1[i].code,
-    ROW_1[i].classList,
-    ROW_1[i].altEn,
-    ROW_1[i].altRu,
-  );
-}
+    // if (altEnKey) {
+    //   const ALT_KEY = document.createElement('span');
+    //   ALT_KEY.classList.add('alt-key');
+    //   ALT_KEY.innerHTML = altEnKey;
+    //   KEY_ELEMENT.setAttribute('alt-en-key', altEnKey);
+    //   if (KEY_ELEMENT.classList.contains('subkey')) KEY_ELEMENT.appendChild(ALT_KEY);
+    // } else {
+    //   KEY_ELEMENT.setAttribute('alt-en-key', enKey.toUpperCase());
+    // }
 
-for (let i = 0; i < ROW_2.length; i += 1) {
-  createKey(
-    SECOND_KEYS_ROW,
-    ROW_2[i].en,
-    ROW_2[i].ru,
-    ROW_2[i].code,
-    ROW_2[i].classList,
-    ROW_2[i].altEn,
-    ROW_2[i].altRu,
-  );
-}
-for (let i = 0; i < ROW_3.length; i += 1) {
-  createKey(
-    THIRD_KEYS_ROW,
-    ROW_3[i].en,
-    ROW_3[i].ru,
-    ROW_3[i].code,
-    ROW_3[i].classList,
-    ROW_3[i].altEn,
-    ROW_3[i].altRu,
-  );
-}
-for (let i = 0; i < ROW_4.length; i += 1) {
-  createKey(
-    FOURTH_KEYS_ROW,
-    ROW_4[i].en,
-    ROW_4[i].ru,
-    ROW_4[i].code,
-    ROW_4[i].classList,
-    ROW_4[i].altEn,
-    ROW_4[i].altRu,
-  );
-}
-for (let i = 0; i < ROW_5.length; i += 1) {
-  createKey(
-    FITHS_KEYS_ROW,
-    ROW_5[i].en,
-    ROW_5[i].ru,
-    ROW_5[i].code,
-    ROW_5[i].classList,
-    ROW_5[i].altEn,
-    ROW_5[i].altRu,
-  );
-}
+    // if (altRuKey) {
+    //   KEY_ELEMENT.setAttribute('alt-ru-key', altRuKey);
+    // } else {
+    //   KEY_ELEMENT.setAttribute('alt-ru-key', ruKey.toUpperCase());
+    // }
+
+    return KEY_ELEMENT;
+  }
+
+  const FIRST_KEYS_ROW = document.querySelector('#keys-row_1');
+  const SECOND_KEYS_ROW = document.querySelector('#keys-row_2');
+  const THIRD_KEYS_ROW = document.querySelector('#keys-row_3');
+  const FOURTH_KEYS_ROW = document.querySelector('#keys-row_4');
+  const FITHS_KEYS_ROW = document.querySelector('#keys-row_5');
+
+  for (let i = 0; i < ROW_1.length; i += 1) {
+    let test = new Key(
+      FIRST_KEYS_ROW,
+      ROW_1[i].en,
+      ROW_1[i].ru,
+      ROW_1[i].code,
+      ROW_1[i].altEn,
+      ROW_1[i].altRu,
+      ROW_1[i].classList,
+    );
+    console.log(test);
+    createKey(
+      FIRST_KEYS_ROW,
+      ROW_1[i].en,
+      ROW_1[i].ru,
+      ROW_1[i].code,
+      ROW_1[i].classList,
+      ROW_1[i].altEn,
+      ROW_1[i].altRu,
+    );
+  }
+
+  for (let i = 0; i < ROW_2.length; i += 1) {
+    createKey(
+      SECOND_KEYS_ROW,
+      ROW_2[i].en,
+      ROW_2[i].ru,
+      ROW_2[i].code,
+      ROW_2[i].classList,
+      ROW_2[i].altEn,
+      ROW_2[i].altRu,
+    );
+  }
+  for (let i = 0; i < ROW_3.length; i += 1) {
+    createKey(
+      THIRD_KEYS_ROW,
+      ROW_3[i].en,
+      ROW_3[i].ru,
+      ROW_3[i].code,
+      ROW_3[i].classList,
+      ROW_3[i].altEn,
+      ROW_3[i].altRu,
+    );
+  }
+  for (let i = 0; i < ROW_4.length; i += 1) {
+    createKey(
+      FOURTH_KEYS_ROW,
+      ROW_4[i].en,
+      ROW_4[i].ru,
+      ROW_4[i].code,
+      ROW_4[i].classList,
+      ROW_4[i].altEn,
+      ROW_4[i].altRu,
+    );
+  }
+  for (let i = 0; i < ROW_5.length; i += 1) {
+    createKey(
+      FITHS_KEYS_ROW,
+      ROW_5[i].en,
+      ROW_5[i].ru,
+      ROW_5[i].code,
+      ROW_5[i].classList,
+      ROW_5[i].altEn,
+      ROW_5[i].altRu,
+    );
+  }
 }
