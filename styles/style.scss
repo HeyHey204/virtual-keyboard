@@ -1,3 +1,9 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 .title {
   font-family: 'Poppins', sans-serif;
   text-align: center;
@@ -26,12 +32,18 @@
   list-style: none;
 }
 
-#textarea {
+.textarea {
   resize: none;
   font-size: 15px;
   line-height: 16px;
   padding: 10px;
   font-family: 'Poppins', sans-serif;
+}
+
+.tip {
+  font-family: 'Poppins', sans-serif;
+  font-size: 18px;
+  text-align: center;
 }
 
 .key {
@@ -41,6 +53,7 @@
   display: flex;
   justify-content: space-around;
   cursor: pointer;
+  user-select: none;
   flex-grow: 1;
   text-align: center;
   box-sizing: border-box;
@@ -48,27 +61,36 @@
   border-radius: 5px;
   padding: 15px 20px;
   max-width: 52px;
+  min-width: 52px;
   background: rgb(255, 255, 255);
-  background: linear-gradient(0deg, rgba(255, 255, 255, 1) 0%, rgba(186, 186, 186, 1) 5%, rgba(255, 255, 255, 1) 10%, rgba(255, 255, 255, 1) 100%);
+  // background: linear-gradient(0deg, rgba(255, 255, 255, 1) 0%, rgba(186, 186, 186, 1) 5%, rgba(255, 255, 255, 1) 10%, rgba(255, 255, 255, 1) 100%);
 
   &.active {
     background-color: #ad6eff;
-    background: linear-gradient(0deg, rgba(169, 137, 210, 1) 0%, rgba(169, 137, 210, 1) 23%, rgba(169, 137, 210, 1) 100%);
+    // background: linear-gradient(0deg, rgba(169, 137, 210, 1) 0%, rgba(169, 137, 210, 1) 23%, rgba(169, 137, 210, 1) 100%);
     border: 2px solid rgb(169, 137, 210);
+  }
+
+  &.animation {
+    animation: key_down .3s forwards;
   }
 
   &:hover {
     background-color: #ad6eff;
-    background: linear-gradient(0deg, rgba(173, 110, 255, 1) 0%, rgba(173, 110, 255, 1) 23%, rgba(173, 110, 255, 1) 100%);
+    // background: linear-gradient(0deg, rgba(173, 110, 255, 1) 0%, rgba(173, 110, 255, 1) 23%, rgba(173, 110, 255, 1) 100%);
     border: 2px solid #ad6eff;
   }
 
   &_special {
     background-color: #7e7e7e;
-    background: linear-gradient(0deg, rgba(158, 158, 158, 1) 0%, rgba(126, 126, 126, 1) 5%, rgba(158, 158, 158, 1) 10%, rgba(158, 158, 158, 1) 100%);
+    // background: linear-gradient(0deg, rgba(158, 158, 158, 1) 0%, rgba(126, 126, 126, 1) 5%, rgba(158, 158, 158, 1) 10%, rgba(158, 158, 158, 1) 100%);
     color: #000;
     font-weight: bold;
     max-width: none;
+
+    &.animation {
+      animation: key_down_special .3s forwards;
+    }
   }
 
   &_space {
@@ -88,4 +110,28 @@
   top: 2px;
   left: 10px;
   font-size: 12px;
+}
+
+@keyframes key_down {
+  0% {
+    background-color: #ad6eff;
+    border: 2px solid rgb(169, 137, 210);
+  }
+
+  100% {
+    background-color: #ffffff;
+    border: 2px solid #adadad;
+  }
+}
+
+@keyframes key_down_special {
+  0% {
+    background-color: #ad6eff;
+    border: 2px solid rgb(169, 137, 210);
+  }
+
+  100% {
+    background-color: #7e7e7e;
+    border: 2px solid #adadad;
+  }
 }
