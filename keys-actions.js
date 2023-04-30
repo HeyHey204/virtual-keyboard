@@ -1,20 +1,9 @@
 export default function keysActions() {
   const KEYS = document.querySelectorAll('.key');
-  const SPACE_KEY = document.querySelector('.key_space');
   const BACKSPACE_KEY = document.querySelector('.key_backspace');
-  const ENTER_KEY = document.querySelector('.key_enter');
   const SHIFT_KEY_LEFT = document.querySelector('.key_shift-left');
   const SHIFT_KEY_RIGHT = document.querySelector('.key_shift-right');
-  const CTRL_KEY_LEFT = document.querySelector('.key_ctrl-left');
-  const CTRL_KEY_RIGHT = document.querySelector('.key_ctrl-right');
-  const ALT_KEY_LEFT = document.querySelector('.key_alt-left');
-  const ALT_KEY_RIGHT = document.querySelector('.key_alt-right');
   const CAPS_KEY = document.querySelector('.key_caps');
-  const WIN_KEY = document.querySelector('.key_win');
-  const ARROW_KEY_UP = document.querySelector('.key_arrow_up');
-  const ARROW_KEY_RIGHT = document.querySelector('.key_arrow_right');
-  const ARROW_KEY_DOWN = document.querySelector('.key_arrow_down');
-  const ARROW_KEY_LEFT = document.querySelector('.key_arrow_left');
   const DEL_KEY = document.querySelector('.key_del');
   const TEXTAREA_ELEMENT = document.querySelector('.textarea');
 
@@ -123,8 +112,6 @@ export default function keysActions() {
   }
 
   window.addEventListener('keydown', (e) => {
-    // console.log(e.code);
-    // console.log(e);
     for (let i = 0; i < KEYS.length; i += 1) {
       if (e.code === KEYS[i].getAttribute('code') && !KEYS[i].classList.contains('key_fn')) {
         e.preventDefault();
@@ -187,6 +174,18 @@ export default function keysActions() {
     if (!keyBtn.classList.contains('key_fn')) {
       keyBtn.addEventListener('click', () => {
         addChar(keyBtn);
+      });
+    }
+    if (!keyBtn.classList.contains('key_caps')) {
+      keyBtn.addEventListener('mousedown', () => {
+        keyBtn.classList.add('active');
+      });
+      keyBtn.addEventListener('mouseup', () => {
+        keyBtn.classList.add('animation');
+        keyBtn.classList.remove('active');
+        setTimeout(() => {
+          keyBtn.classList.remove('animation');
+        }, 100);
       });
     }
   });

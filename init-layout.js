@@ -1,4 +1,5 @@
 import keys from './keys.js';
+import KeyNode from './key-node.js';
 
 export default function initLayout() {
   const BODY_ELEMENT = document.body;
@@ -38,7 +39,7 @@ export default function initLayout() {
   HEADER_ELEMENT.appendChild(TITLE_ELEMENT);
 
   TITLE_ELEMENT.classList.add('title');
-  TITLE_ELEMENT.innerHTML = 'Keyboard';
+  TITLE_ELEMENT.innerHTML = 'virtual keyboard';
 
   MAIN_ELEMENT.appendChild(WRAPPER_ELEMENT);
 
@@ -51,129 +52,92 @@ export default function initLayout() {
   TEXTAREA_ELEMENT.classList.add('textarea');
   TEXTAREA_ELEMENT.name = 'textarea';
   TEXTAREA_ELEMENT.id = 'textarea';
-  TEXTAREA_ELEMENT.cols = '150';
+  TEXTAREA_ELEMENT.cols = 'auto';
   TEXTAREA_ELEMENT.rows = '20';
 
+  class KeyboardRow extends HTMLElement {
+    constructor(id) {
+      super();
+      this.classList.add('keys-row');
+      this.id = `keys-row_${id}`;
+    }
+
+    addKey(key) {
+      this.append(key);
+      return this;
+    }
+  }
+
+  customElements.define('key-node', KeyNode);
+  customElements.define('keyboard-row', KeyboardRow);
+
   for (let i = 1; i <= 5; i += 1) {
-    const ROW_ELEMENT = KEYBOARD_CONTAINER.appendChild(document.createElement('ul'));
-    ROW_ELEMENT.classList.add('keys-row');
-    ROW_ELEMENT.id = `keys-row_${i}`;
+    const ROW_ELEMENT = new KeyboardRow(i);
+    KEYBOARD_CONTAINER.appendChild(ROW_ELEMENT);
   }
 
-  // class Key {
-  //   constructor(rowEl, enKey, ruKey, code, altEnKey, altRuKey, [...classList] = 'key') {
-  //     this.rowEl = rowEl;
-  //     this.enKey = enKey;
-  //     this.ruKey = ruKey;
-  //     this.code = code;
-  //     this.altEnKey = altEnKey;
-  //     this.altRuKey = altRuKey;
-  //     this.classList = [...classList];
-  //   }
-  // }
-
-  function createKey(rowEl, enKey, ruKey, code, [...classList] = 'key', altEnKey = null, altRuKey = null) {
-    const KEY_ELEMENT = document.createElement('li');
-    rowEl.appendChild(KEY_ELEMENT);
-
-    KEY_ELEMENT.classList.add(...classList);
-    KEY_ELEMENT.appendChild(document.createTextNode(isLangEn === 'true' ? enKey : ruKey));
-
-    KEY_ELEMENT.setAttribute('en-key', enKey);
-    KEY_ELEMENT.setAttribute('ru-key', ruKey);
-    KEY_ELEMENT.setAttribute('code', code);
-    KEY_ELEMENT.setAttribute('alt-en-key', altEnKey);
-    KEY_ELEMENT.setAttribute('alt-ru-key', altRuKey);
-
-    // if (altEnKey) {
-    //   const ALT_KEY = document.createElement('span');
-    //   ALT_KEY.classList.add('alt-key');
-    //   ALT_KEY.innerHTML = altEnKey;
-    //   KEY_ELEMENT.setAttribute('alt-en-key', altEnKey);
-    //   if (KEY_ELEMENT.classList.contains('subkey')) KEY_ELEMENT.appendChild(ALT_KEY);
-    // } else {
-    //   KEY_ELEMENT.setAttribute('alt-en-key', enKey.toUpperCase());
-    // }
-
-    // if (altRuKey) {
-    //   KEY_ELEMENT.setAttribute('alt-ru-key', altRuKey);
-    // } else {
-    //   KEY_ELEMENT.setAttribute('alt-ru-key', ruKey.toUpperCase());
-    // }
-
-    return KEY_ELEMENT;
-  }
-
-  const FIRST_KEYS_ROW = document.querySelector('#keys-row_1');
-  const SECOND_KEYS_ROW = document.querySelector('#keys-row_2');
-  const THIRD_KEYS_ROW = document.querySelector('#keys-row_3');
-  const FOURTH_KEYS_ROW = document.querySelector('#keys-row_4');
-  const FITHS_KEYS_ROW = document.querySelector('#keys-row_5');
+  const [
+    FIRST_KEYS_ROW,
+    SECOND_KEYS_ROW,
+    THIRD_KEYS_ROW,
+    FOURTH_KEYS_ROW,
+    FITHS_KEYS_ROW,
+  ] = KEYBOARD_CONTAINER.childNodes;
 
   for (let i = 0; i < ROW_1.length; i += 1) {
-    let test = new Key(
-      FIRST_KEYS_ROW,
+    FIRST_KEYS_ROW.addKey(new KeyNode(
+      isLangEn,
       ROW_1[i].en,
       ROW_1[i].ru,
       ROW_1[i].code,
       ROW_1[i].altEn,
       ROW_1[i].altRu,
       ROW_1[i].classList,
-    );
-    console.log(test);
-    createKey(
-      FIRST_KEYS_ROW,
-      ROW_1[i].en,
-      ROW_1[i].ru,
-      ROW_1[i].code,
-      ROW_1[i].classList,
-      ROW_1[i].altEn,
-      ROW_1[i].altRu,
-    );
+    ));
   }
 
   for (let i = 0; i < ROW_2.length; i += 1) {
-    createKey(
-      SECOND_KEYS_ROW,
+    SECOND_KEYS_ROW.addKey(new KeyNode(
+      isLangEn,
       ROW_2[i].en,
       ROW_2[i].ru,
       ROW_2[i].code,
-      ROW_2[i].classList,
       ROW_2[i].altEn,
       ROW_2[i].altRu,
-    );
+      ROW_2[i].classList,
+    ));
   }
   for (let i = 0; i < ROW_3.length; i += 1) {
-    createKey(
-      THIRD_KEYS_ROW,
+    THIRD_KEYS_ROW.addKey(new KeyNode(
+      isLangEn,
       ROW_3[i].en,
       ROW_3[i].ru,
       ROW_3[i].code,
-      ROW_3[i].classList,
       ROW_3[i].altEn,
       ROW_3[i].altRu,
-    );
+      ROW_3[i].classList,
+    ));
   }
   for (let i = 0; i < ROW_4.length; i += 1) {
-    createKey(
-      FOURTH_KEYS_ROW,
+    FOURTH_KEYS_ROW.addKey(new KeyNode(
+      isLangEn,
       ROW_4[i].en,
       ROW_4[i].ru,
       ROW_4[i].code,
-      ROW_4[i].classList,
       ROW_4[i].altEn,
       ROW_4[i].altRu,
-    );
+      ROW_4[i].classList,
+    ));
   }
   for (let i = 0; i < ROW_5.length; i += 1) {
-    createKey(
-      FITHS_KEYS_ROW,
+    FITHS_KEYS_ROW.addKey(new KeyNode(
+      isLangEn,
       ROW_5[i].en,
       ROW_5[i].ru,
       ROW_5[i].code,
-      ROW_5[i].classList,
       ROW_5[i].altEn,
       ROW_5[i].altRu,
-    );
+      ROW_5[i].classList,
+    ));
   }
 }

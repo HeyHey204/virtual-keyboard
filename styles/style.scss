@@ -1,3 +1,17 @@
+$default-key: #dadada;
+$default-key-hover: #c6a9eb;
+$default-key-active: #ad6eff;
+
+$default-key-shadow: #adadad;
+$default-key-shadow-active: #9d52ff;
+
+$special-key: #999999;
+$special-key-hover: #b47bff;
+$special-key-active: #a159ff;
+
+$special-key-shadow: #666666;
+$special-key-shadow-active: #923fff;
+
 * {
   margin: 0;
   padding: 0;
@@ -7,6 +21,29 @@
 .title {
   font-family: 'Poppins', sans-serif;
   text-align: center;
+  margin: 40px 0;
+
+  &::after {
+    content: '_';
+    position: relative;
+    bottom: 6px;
+    opacity: 1;
+    animation: underscore 0.8s infinite;
+  }
+
+  @keyframes underscore {
+    0% {
+      opacity: 1;
+    }
+
+    60% {
+      opacity: 1;
+    }
+
+    100% {
+      opacity: 0;
+    }
+  }
 }
 
 .wrapper {
@@ -37,7 +74,17 @@
   font-size: 15px;
   line-height: 16px;
   padding: 10px;
+  margin: 0 auto;
+  min-width: 885px;
   font-family: 'Poppins', sans-serif;
+  border: 2px solid #dadada;
+  outline: 0px;
+  border-radius: 10px;
+  transition: border .2s ease-in;
+
+  &:focus {
+    border: 2px solid $special-key-hover;
+  }
 }
 
 .tip {
@@ -57,39 +104,65 @@
   flex-grow: 1;
   text-align: center;
   box-sizing: border-box;
-  border: 2px solid #adadad;
   border-radius: 5px;
   padding: 15px 20px;
   max-width: 52px;
   min-width: 52px;
-  background: rgb(255, 255, 255);
-  // background: linear-gradient(0deg, rgba(255, 255, 255, 1) 0%, rgba(186, 186, 186, 1) 5%, rgba(255, 255, 255, 1) 10%, rgba(255, 255, 255, 1) 100%);
-
-  &.active {
-    background-color: #ad6eff;
-    // background: linear-gradient(0deg, rgba(169, 137, 210, 1) 0%, rgba(169, 137, 210, 1) 23%, rgba(169, 137, 210, 1) 100%);
-    border: 2px solid rgb(169, 137, 210);
-  }
+  background: $default-key;
+  box-shadow: 0px 4px $default-key-shadow;
+  transition-property: background;
+  transition-duration: .1s;
+  transition-timing-function: ease-out;
 
   &.animation {
     animation: key_down .3s forwards;
   }
 
   &:hover {
-    background-color: #ad6eff;
-    // background: linear-gradient(0deg, rgba(173, 110, 255, 1) 0%, rgba(173, 110, 255, 1) 23%, rgba(173, 110, 255, 1) 100%);
-    border: 2px solid #ad6eff;
+    background-color: $default-key-hover;
+    top: 1px;
+    box-shadow: 0px 3px $default-key-shadow-active;
+  }
+
+  &.active {
+    color: #fff;
+    top: 3px;
+    background-color: $default-key-active;
+    box-shadow: 0px 1px $default-key-shadow-active;
+
+    &:hover {
+      background-color: $default-key-active;
+      top: 3px;
+      box-shadow: 0px 1px $default-key-shadow-active;
+    }
   }
 
   &_special {
-    background-color: #7e7e7e;
-    // background: linear-gradient(0deg, rgba(158, 158, 158, 1) 0%, rgba(126, 126, 126, 1) 5%, rgba(158, 158, 158, 1) 10%, rgba(158, 158, 158, 1) 100%);
+    background-color: $special-key;
     color: #000;
     font-weight: bold;
     max-width: none;
+    box-shadow: 0px 3px $special-key-shadow;
 
     &.animation {
-      animation: key_down_special .3s forwards;
+      animation: key_down_special .3s ease-out;
+    }
+
+    &:hover {
+      background-color: $special-key-hover;
+      box-shadow: 0px 3px $special-key-shadow-active;
+    }
+
+    &.active {
+      top: 3px;
+      background-color: $special-key-active;
+      box-shadow: 0px 1px $special-key-shadow-active;
+
+      &:hover {
+        background-color: $special-key-active;
+        top: 3px;
+        box-shadow: 0px 1px $special-key-shadow-active;
+      }
     }
   }
 
@@ -114,24 +187,32 @@
 
 @keyframes key_down {
   0% {
-    background-color: #ad6eff;
-    border: 2px solid rgb(169, 137, 210);
+    color: #fff;
+    background-color: $default-key-active;
+    top: 3px;
+    box-shadow: 0px 1px $default-key-shadow-active;
   }
 
   100% {
-    background-color: #ffffff;
-    border: 2px solid #adadad;
+    color: #000;
+    background-color: $default-key;
+    top: 0;
+    box-shadow: 0px 4px $default-key-shadow;
   }
 }
 
 @keyframes key_down_special {
   0% {
-    background-color: #ad6eff;
-    border: 2px solid rgb(169, 137, 210);
+    color: #fff;
+    background-color: $special-key-active;
+    top: 3px;
+    box-shadow: 0px 1px $default-key-shadow-active;
   }
 
   100% {
-    background-color: #7e7e7e;
-    border: 2px solid #adadad;
+    color: #000;
+    background-color: $special-key;
+    top: 0;
+    box-shadow: 0px 4px $default-key-shadow;
   }
 }
